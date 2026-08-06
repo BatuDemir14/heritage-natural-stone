@@ -2,6 +2,11 @@
 (function () {
   "use strict";
 
+  /* QA hook: ?noanim renders everything instantly */
+  if (location.search.indexOf("noanim") !== -1) {
+    document.documentElement.classList.add("no-anim");
+  }
+
   var header = document.getElementById("siteHeader");
   var menuToggle = document.getElementById("menuToggle");
   var mobileMenu = document.getElementById("mobileMenu");
