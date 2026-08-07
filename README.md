@@ -24,13 +24,13 @@ assets/logo-mark.svg
 | Quarry Gold | `#CBAE82` | thin rules, numbers, selective accents |
 | Intelligence Navy | `#1F3E52` | sourcing / technology / info areas |
 
-Typography: Cinzel (wordmark) · Cormorant Garamond (display) · Inter (body).
+Typography: Cinzel (wordmark) · Montserrat (bold display / regular body).
 
 ## TODO before launch
 
-- [ ] Replace placeholder WhatsApp number (`wa.me/905000000000`) — 2 places in `index.html`
-- [ ] Confirm contact email (`info@heritagenaturalstone.com`)
-- [ ] Replace generated marble textures with real slab / quarry photography
+- [x] WhatsApp number connected (+90 535 063 67 63)
+- [x] Contact email confirmed (`info@heritagenaturalstone.com`)
+- [ ] Replace photos with high-res originals (partner will supply; current hero/quarry images are low-res)
 - [ ] Custom domain (`heritagenaturalstone.com`) → set up CNAME
 - [ ] Privacy / legal page
 - [ ] Analytics
