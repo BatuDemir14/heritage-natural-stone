@@ -30,8 +30,9 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* NOTE: no CSS scroll-behavior:smooth here — Chrome silently drops fragment
+   scrolls with it; smooth in-page scrolling is done in JS instead. */
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: var(--header-h);
 }
 

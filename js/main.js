@@ -53,6 +53,24 @@
     a.addEventListener("click", closeMenu);
   });
 
+  /* --- Smooth in-page anchor scrolling ---
+     (CSS scroll-behavior:smooth makes Chrome drop fragment scrolls entirely,
+     so anchors are handled here with scrollIntoView instead.) */
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      var id = link.getAttribute("href").slice(1);
+      var target = id && document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      var smooth =
+        !reduceMotion.matches &&
+        !document.documentElement.classList.contains("no-anim");
+      target.scrollIntoView({ behavior: smooth ? "smooth" : "auto" });
+      if (history.pushState) history.pushState(null, "", "#" + id);
+    });
+  });
+
   /* --- Team: switch between first and second photo --- */
   document.querySelectorAll(".member__media").forEach(function (media) {
     var btn = media.querySelector(".member__next");
