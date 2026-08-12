@@ -8,7 +8,7 @@
   <meta property="og:title" content="Heritage Natural Stone">
   <meta property="og:description" content="The long-expected stone supply reform. Right stone. Right source. Right guidance.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/photos/hero-nero.jpg">
+  <meta property="og:image" content="assets/photos/hero-slab.jpg">
   <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,8 +29,8 @@
 
     <nav class="nav" aria-label="Main navigation">
       <a class="nav__link" href="#who-we-are">Who We Are</a>
+      <a class="nav__link" href="#our-team">Our Team</a>
       <a class="nav__link" href="#what-we-do">What We Do</a>
-      <a class="nav__link" href="#our-values">Our Values</a>
       <a class="nav__link" href="#contact">Contact</a>
     </nav>
 
@@ -43,8 +43,8 @@
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <nav aria-label="Mobile navigation">
       <a href="#who-we-are">Who We Are</a>
+      <a href="#our-team">Our Team</a>
       <a href="#what-we-do">What We Do</a>
-      <a href="#our-values">Our Values</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -64,7 +64,7 @@
   <main id="top">
 
     <!-- ===== 1. Hero ===== -->
-    <section class="hero" id="hero">
+    <section class="hero" id="hero" data-header-theme="hero">
       <div class="hero__inner">
         <h1 class="hero__title reveal">The long-expected<br>stone supply reform.</h1>
       </div>
@@ -74,199 +74,189 @@
     </section>
 
     <!-- ===== 2. Who We Are ===== -->
-    <section class="section split" id="who-we-are">
-      <div class="split__content">
-        <p class="kicker reveal">Who We Are</p>
-        <h2 class="section__title reveal">Revolutionizing the stone business</h2>
-        <p class="section__text reveal">
-          Heritage Natural Stone Company was built to change a previously slow-moving
-          industry. We exist to assist you in choice and get you high-quality stone
-          faster than anyone else. Backed by our parent company&rsquo;s 25-year track
-          record and over 2,000 successful supply orders, we have mastered every step
-          of the stone supply chain. Our ambitious, young workforce brings energy,
-          speed and modern thinking to every order.
-        </p>
-        <ul class="stats reveal">
-          <li class="stats__item">
-            <span class="stats__num">25</span>
-            <span class="stats__label">years of parent-company expertise</span>
-          </li>
-          <li class="stats__item">
-            <span class="stats__num">2,000+</span>
-            <span class="stats__label">completed supply orders</span>
-          </li>
-          <li class="stats__item">
-            <span class="stats__num">&lt;24h</span>
-            <span class="stats__label">young team, fast response times</span>
-          </li>
-        </ul>
-      </div>
-      <div class="split__media split__media--walnut" role="img" aria-label="Walnut travertine slabs in the warehouse"></div>
-    </section>
-
-    <!-- ===== 3. What We Do ===== -->
-    <section class="section split split--reverse split--dark" id="what-we-do">
-      <div class="split__media split__media--showroom" role="img" aria-label="Natural stone slabs on showroom racks"></div>
-      <div class="split__content">
-        <p class="kicker reveal">What We Do</p>
-        <h2 class="section__title reveal">Traditional stone expertise,<br>modern sourcing intelligence.</h2>
-        <p class="section__text reveal">
-          We find you exactly the stone you need — the right measurements, the right
-          finish, the right quality. In a market saturated with mislabeled stones and
-          vague product descriptions, direct quarry relationships, real stock access
-          and AI-assisted sourcing let us send a complete offer with real photos
-          straight to WhatsApp or email — in hours, not weeks.
-        </p>
-        <ul class="chips reveal">
-          <li class="chip">Direct Quarry Access</li>
-          <li class="chip">Real-Time Stock</li>
-          <li class="chip">AI-Assisted Sourcing</li>
-          <li class="chip">Photos in Hours</li>
-        </ul>
+    <section class="section contained" id="who-we-are" data-header-theme="light">
+      <div class="contained__inner">
+        <div class="contained__content">
+          <p class="kicker reveal">Who We Are</p>
+          <h2 class="section__title reveal">Revolutionizing the stone business</h2>
+          <p class="section__text reveal">
+            Heritage Natural Stone Company was built to change a previously slow-moving
+            industry. We exist to assist you in choice and get you high-quality stone
+            faster than anyone else. Backed by our parent company&rsquo;s 25-year track
+            record and over 2,000 successful supply orders, we have mastered every step
+            of the stone supply chain. Our ambitious, young workforce brings energy,
+            speed and modern thinking to every order.
+          </p>
+          <ul class="stats reveal">
+            <li class="stats__item">
+              <span class="stats__num">25</span>
+              <span class="stats__label">years of parent-company expertise</span>
+            </li>
+            <li class="stats__item">
+              <span class="stats__num">2,000+</span>
+              <span class="stats__label">completed supply orders</span>
+            </li>
+            <li class="stats__item">
+              <span class="stats__num">&lt;24h</span>
+              <span class="stats__label">young team, fast response times</span>
+            </li>
+          </ul>
+        </div>
+        <div class="media-card reveal" role="img" aria-label="Walnut travertine slabs in the warehouse"
+             style="background-image:url('assets/photos/walnut-travertine.jpg')"></div>
       </div>
     </section>
 
-    <!-- ===== 4. Pick Your Profile ===== -->
-    <section class="profiles" id="profiles">
-      <div class="profiles__hero">
-        <h2 class="profiles__punch reveal">For projects that<br>deserve to last.</h2>
+    <!-- ===== 3. Our Team ===== -->
+    <section class="section team" id="our-team" data-header-theme="light">
+      <div class="team__inner">
+        <p class="kicker reveal">Our Team</p>
+        <h2 class="section__title reveal">The people behind the stone</h2>
+
+        <div class="member reveal">
+          <figure class="member__media" data-photos>
+            <img class="member__img member__img--main" src="assets/team/kerem-1.jpg" alt="Kerem Gemalmazoğlu" loading="lazy">
+            <img class="member__img member__img--alt" src="assets/team/kerem-2.jpg" alt="Kerem Gemalmazoğlu playing water polo for the Turkish national team" loading="lazy">
+            <button class="member__next" type="button" aria-label="Show next photo"><span aria-hidden="true">&rsaquo;</span></button>
+          </figure>
+          <div class="member__bio">
+            <h3 class="member__name">Kerem Gemalmazoğlu</h3>
+            <p class="member__role">Finance Background &middot; National Team Athlete</p>
+            <p class="member__text">
+              Kerem, a Turkish national team water polo center, brings strength to our
+              team in and out of the pool. With his financial advisory background and
+              four spoken languages, he is there for you when you need him most —
+              to get you the stone you need.
+            </p>
+          </div>
+        </div>
+
+        <div class="member reveal">
+          <figure class="member__media" data-photos>
+            <img class="member__img member__img--main" src="assets/team/emre-1.jpg" alt="Emre Gürdenli" loading="lazy">
+            <img class="member__img member__img--alt" src="assets/team/emre-2.jpg" alt="Emre Gürdenli with a national team swimming medal" loading="lazy">
+            <button class="member__next" type="button" aria-label="Show next photo"><span aria-hidden="true">&rsaquo;</span></button>
+          </figure>
+          <div class="member__bio">
+            <h3 class="member__name">Emre Gürdenli</h3>
+            <p class="member__role">Architect &middot; National Team Athlete</p>
+            <p class="member__text">
+              Precision, resilience, discipline — and the necessary eye for design.
+              As the architect and designer on our team, Emre brings the missing
+              flavour to the table. A record-holding Turkish national team swimmer,
+              he projects his discipline and energy into an efficient and precise
+              way of supplying your stone.
+            </p>
+          </div>
+        </div>
+
+        <div class="member reveal">
+          <figure class="member__media" data-photos>
+            <img class="member__img member__img--main" src="assets/team/umut-1.jpg" alt="Umut Yeşiltan" loading="lazy">
+            <img class="member__img member__img--alt" src="assets/team/umut-2.jpg" alt="Umut Yeşiltan inspecting a marble slab in the warehouse" loading="lazy">
+            <button class="member__next" type="button" aria-label="Show next photo"><span aria-hidden="true">&rsaquo;</span></button>
+          </figure>
+          <div class="member__bio">
+            <h3 class="member__name">Umut Yeşiltan</h3>
+            <p class="member__role">Experienced Industry Expert</p>
+            <p class="member__text">
+              More than two decades of experience and thousands of projects exported.
+              Umut is the stone-man of Heritage — any dead end you come across in the
+              stone industry, he knows the way from there.
+            </p>
+          </div>
+        </div>
+
       </div>
-      <div class="profiles__body">
-        <p class="kicker reveal">Pick your profile</p>
-        <p class="profiles__intro reveal">Every profile works with stone differently.
-        Choose yours to see how Heritage supports you.</p>
+    </section>
 
-        <div class="accordion reveal">
-
-          <details class="acc">
-            <summary><span>Architects &amp; Designers</span><i aria-hidden="true"></i></summary>
-            <div class="acc__panel">
-              <p>We love helping creativity and stone meet. Heritage works alongside
-              architects and designers so that specifying natural stone feels
-              confident, not risky.</p>
-              <ul>
-                <li>Budgeting</li>
-                <li>Material research &amp; reporting</li>
-                <li>Material selection &amp; value engineering</li>
-                <li>Stone specification support</li>
-                <li>Purchasing &amp; procurement</li>
-                <li>Fabrication supervision &amp; quality control</li>
-                <li>Installation advisory</li>
-                <li>Logistics &amp; handling</li>
-                <li>Maintenance &amp; care guidance</li>
-              </ul>
-            </div>
-          </details>
-
-          <details class="acc">
-            <summary><span>Wholesalers &amp; Importers</span><i aria-hidden="true"></i></summary>
-            <div class="acc__panel">
-              <p>We know the hidden corners of this industry — the specialties, the new
-              materials, the textures your clients are always in the mood for. Let us be
-              your eyes and arms at the quarries and factories, with inspection and
-              quality control before loading. Save time and money.</p>
-              <ul>
-                <li>Material research &amp; reporting</li>
-                <li>Material selection &amp; value engineering</li>
-                <li>Vendor research &amp; analysis</li>
-                <li>Quality control inspections</li>
-                <li>Logistics &amp; handling</li>
-              </ul>
-            </div>
-          </details>
-
-          <details class="acc">
-            <summary><span>Fabricators</span><i aria-hidden="true"></i></summary>
-            <div class="acc__panel">
-              <p>First-time or long-time importer — stay current on the latest materials
-              and scout the good deals. Build your own container load with different
-              colours from different vendors. Buy by bundle, no minimum quantity.</p>
-              <ul>
-                <li>Material research &amp; reporting</li>
-                <li>Material selection &amp; value engineering</li>
-                <li>Vendor research &amp; analysis</li>
-                <li>Quality control inspections</li>
-                <li>Logistics &amp; handling</li>
-              </ul>
-            </div>
-          </details>
-
-          <details class="acc">
-            <summary><span>Installers</span><i aria-hidden="true"></i></summary>
-            <div class="acc__panel">
-              <p>Special colours, special sizes — and special pricing. You decide the
-              quality; we find exactly what you want, and save you time and money doing it.</p>
-              <ul>
-                <li>Material research &amp; reporting</li>
-                <li>Material selection &amp; value engineering</li>
-                <li>Vendor research &amp; analysis</li>
-                <li>Quality control inspections</li>
-                <li>Logistics &amp; handling</li>
-              </ul>
-            </div>
-          </details>
-
-          <details class="acc">
-            <summary><span>Real Estate Developers</span><i aria-hidden="true"></i></summary>
-            <div class="acc__panel">
-              <p>Natural stone is a high-return investment: every piece is unique, and it
-              adds lasting value to what you build. We keep the selection and supply
-              process as solid as the material itself.</p>
-              <ul>
-                <li>Budgeting</li>
-                <li>Material research &amp; reporting</li>
-                <li>Material selection &amp; value engineering</li>
-                <li>Stone specification support</li>
-                <li>Purchasing &amp; procurement</li>
-                <li>Fabrication supervision &amp; quality control</li>
-                <li>Installation advisory</li>
-                <li>Logistics &amp; handling</li>
-              </ul>
-            </div>
-          </details>
-
-          <details class="acc">
-            <summary><span>Homeowners</span><i aria-hidden="true"></i></summary>
-            <div class="acc__panel">
-              <p>Building or remodeling your home is a dream — it shouldn&rsquo;t turn into
-              a nightmare. With our white-glove service you reach the highest expectations
-              without busting the budget.</p>
-              <ul>
-                <li>Budgeting</li>
-                <li>Material research &amp; reporting</li>
-                <li>Material selection &amp; value engineering</li>
-                <li>Purchasing &amp; procurement</li>
-                <li>Installation advisory</li>
-                <li>Maintenance &amp; care guidance</li>
-              </ul>
-            </div>
-          </details>
-
+    <!-- ===== 4. What We Do ===== -->
+    <section class="section contained contained--dark" id="what-we-do" data-header-theme="dark">
+      <div class="contained__inner contained__inner--reverse">
+        <div class="media-card media-card--landscape reveal" role="img" aria-label="Heritage Natural Stone slabs on showroom racks"
+             style="background-image:url('assets/photos/showroom-heritage.jpg')"></div>
+        <div class="contained__content">
+          <p class="kicker reveal">What We Do</p>
+          <h2 class="section__title reveal">Traditional stone expertise,<br>modern sourcing intelligence.</h2>
+          <p class="section__text reveal">
+            We find you exactly the stone you need — the right measurements, the right
+            finish, the right quality. In a market saturated with mislabeled stones and
+            vague product descriptions, direct quarry relationships, real stock access
+            and AI-assisted sourcing let us send a complete offer with real photos
+            straight to WhatsApp or email — in hours, not weeks.
+          </p>
+          <ul class="chips reveal">
+            <li><a class="chip" href="#quarry-access">Direct Quarry Access</a></li>
+            <li><a class="chip" href="#real-time-stock">Real-Time Stock</a></li>
+            <li><a class="chip" href="#ai-sourcing">AI-Assisted Sourcing</a></li>
+            <li><a class="chip" href="#photos-in-hours">Photos in Hours</a></li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <!-- ===== 5. Our Values ===== -->
-    <section class="section values" id="our-values">
-      <div class="values__inner">
-        <p class="kicker reveal">Our Values</p>
-        <h2 class="section__title section__title--big reveal">Fast. Honest. Precise.</h2>
-        <div class="gold-rule gold-rule--center reveal" aria-hidden="true"></div>
-        <p class="section__text section__text--center reveal">
-          At the core of Heritage Natural Stone is a young, driven team that believes
-          in hard work and dedication above all else. We treat communication not as an
-          afterthought but as one of our most important products — always quick,
-          always honest, always precise.
+    <!-- ===== 5. Punchline banner ===== -->
+    <section class="banner" id="banner" data-header-theme="dark">
+      <h2 class="banner__punch reveal">For projects that<br>deserve to last.</h2>
+    </section>
+
+    <!-- ===== 6. Feature sections ===== -->
+    <section class="feature" id="quarry-access" data-header-theme="light">
+      <div class="feature__inner">
+        <h2 class="section__title reveal">Direct Quarry Access</h2>
+        <p class="section__text reveal">
+          We work with hundreds of quarries across Turkey, Greece, Italy and Spain —
+          going straight to the source for the exact block, slab or finish your
+          project calls for.
         </p>
+        <div class="feature__media reveal" role="img" aria-label="Terraced marble quarry benches"
+             style="background-image:url('assets/photos/feature-quarry.jpg')"></div>
       </div>
     </section>
 
-    <!-- ===== 5. Contact close ===== -->
-    <section class="close" id="contact">
+    <section class="feature feature--dim" id="real-time-stock" data-header-theme="light">
+      <div class="feature__inner">
+        <h2 class="section__title reveal">Real-Time Stock</h2>
+        <p class="section__text reveal">
+          We monitor stock live, with daily updates and batch pictures.
+          Information has never been this easy and quick to access.
+        </p>
+        <div class="feature__media reveal" role="img" aria-label="Slab warehouse gallery with stocked racks"
+             style="background-image:url('assets/photos/feature-stock.jpg')"></div>
+      </div>
+    </section>
+
+    <section class="feature" id="ai-sourcing" data-header-theme="light">
+      <div class="feature__inner">
+        <h2 class="section__title reveal">AI-Assisted Sourcing</h2>
+        <p class="section__text reveal">
+          After years of planning and data collection, our AI-backed digital stone
+          guide helps us get to your stone faster than ever.
+        </p>
+        <div class="feature__media reveal" role="img" aria-label="Automated slab warehouse concept"
+             style="background-image:url('assets/photos/feature-ai.jpg')"></div>
+      </div>
+    </section>
+
+    <section class="feature feature--dim" id="photos-in-hours" data-header-theme="light">
+      <div class="feature__inner">
+        <h2 class="section__title reveal">Photos in Hours</h2>
+        <p class="section__text reveal">
+          Choose from daily-updated stock pictures to find the exact, unique marble
+          you need for your project.
+        </p>
+        <div class="feature__media reveal" role="img" aria-label="Rosso Levanto marble slab with batch label"
+             style="background-image:url('assets/photos/feature-photos.jpg')"></div>
+      </div>
+    </section>
+
+    <!-- ===== 7. Contact close ===== -->
+    <section class="close" id="contact" data-header-theme="dark">
       <div class="close__inner">
         <h2 class="close__title reveal">Ready when you are.</h2>
         <p class="close__text reveal">
-          Text, email or call — one message away from your next stone order.
+          Try us out — get an accurate and fast answer you have never seen
+          in the industry before.
         </p>
         <div class="close__actions reveal">
           <a class="btn btn--wa" href="https://wa.me/905350636763" target="_blank" rel="noopener">

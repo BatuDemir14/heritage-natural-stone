@@ -10,14 +10,27 @@
   var header = document.getElementById("siteHeader");
   var menuToggle = document.getElementById("menuToggle");
   var mobileMenu = document.getElementById("mobileMenu");
-  var hero = document.getElementById("hero");
 
-  /* --- Header: transparent over hero, solid after --- */
+  /* --- Header: theme follows the section under it (hero/light/dark) --- */
+  var themedSections = Array.prototype.slice.call(
+    document.querySelectorAll("[data-header-theme]")
+  );
   function onScroll() {
-    var threshold = hero ? hero.offsetHeight - header.offsetHeight : 400;
-    header.classList.toggle("is-solid", window.scrollY > threshold);
+    var probe = header.offsetHeight * 0.6;
+    var theme = "light";
+    for (var i = 0; i < themedSections.length; i++) {
+      var r = themedSections[i].getBoundingClientRect();
+      if (r.top <= probe && r.bottom >= probe) {
+        theme = themedSections[i].getAttribute("data-header-theme");
+        break;
+      }
+    }
+    /* over the hero the header stays transparent (default styling) */
+    header.classList.toggle("is-light", theme === "light");
+    header.classList.toggle("is-dark", theme === "dark");
   }
   window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
   onScroll();
 
   /* --- Mobile menu --- */
@@ -38,6 +51,19 @@
   });
   mobileMenu.querySelectorAll("a").forEach(function (a) {
     a.addEventListener("click", closeMenu);
+  });
+
+  /* --- Team: switch between first and second photo --- */
+  document.querySelectorAll(".member__media").forEach(function (media) {
+    var btn = media.querySelector(".member__next");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var showingAlt = media.classList.toggle("show-alt");
+      btn.setAttribute(
+        "aria-label",
+        showingAlt ? "Show previous photo" : "Show next photo"
+      );
+    });
   });
 
   /* --- Reveal on scroll --- */
@@ -63,7 +89,7 @@
   }
 
   /* --- Active nav link by section --- */
-  var sections = ["who-we-are", "what-we-do", "our-values", "contact"]
+  var sections = ["who-we-are", "our-team", "what-we-do", "contact"]
     .map(function (id) { return document.getElementById(id); })
     .filter(Boolean);
   var navLinks = document.querySelectorAll(".nav__link");

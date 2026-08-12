@@ -8,10 +8,14 @@ Static HTML/CSS/JS — no build step, published directly via GitHub Pages.
 ## Structure
 
 ```
-index.html        one-page layout (Hero → Who We Are → What We Do → Our Values → Contact)
+index.html        one-page layout (Hero → Who We Are → Our Team → What We Do →
+                  punchline banner → 4 feature sections → Contact)
 css/style.css     design system & layout
-js/main.js        header state, mobile menu, scroll reveals, active nav
+js/main.js        header theme by section, mobile menu, team photo switcher,
+                  scroll reveals, active nav
 assets/marble/    marble textures (procedurally generated — placeholder until real photography)
+assets/photos/    client-supplied section photos
+assets/team/      partner portraits (2 photos each)
 assets/logo-mark.svg
 ```
 
