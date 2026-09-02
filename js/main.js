@@ -364,14 +364,26 @@
         .to(["#our-team .team__grid", "#our-team .team__line"],
             { autoAlpha: 0, y: -60, duration: 0.9, ease: "power3.in" });
     } else {
+      /* mobile: the hero eases away as you scroll off it */
+      gsap.to(".hero__stage", {
+        yPercent: -14, autoAlpha: 0.2, ease: "none",
+        scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true }
+      });
+
+      /* mobile: each member card rises while its photo develops open */
       gsap.utils.toArray(".team__grid .member").forEach(function (m) {
-        gsap.from(m, {
-          autoAlpha: 0, y: 46, duration: 0.7, ease: "power3.out",
+        var media = m.querySelector(".member__media");
+        gsap.timeline({
+          defaults: { ease: "power3.out" },
           scrollTrigger: { trigger: m, start: "top 85%" }
-        });
+        })
+          .from(m, { autoAlpha: 0, y: 56, duration: 0.8 })
+          .fromTo(media,
+            { clipPath: "inset(0% 0% 100% 0%)" },
+            { clipPath: "inset(0% 0% 0% 0%)", duration: 0.9 }, 0.1);
       });
       gsap.from(".team__line", {
-        autoAlpha: 0, y: 24, duration: 0.6,
+        autoAlpha: 0, y: 24, duration: 0.6, ease: "power3.out",
         scrollTrigger: { trigger: ".team__line", start: "top 92%" }
       });
     }
@@ -391,14 +403,12 @@
         clipPath: "inset(0% 0% 0% 0%)", duration: 1.1, ease: "power3.inOut",
         scrollTrigger: { trigger: ".wwd__video", start: "top 82%" }
       });
-    if (desktopMotion) {
-      gsap.to(".wwd__video", {
-        y: -36, ease: "none",
-        scrollTrigger: {
-          trigger: ".wwd__block", start: "top bottom", end: "bottom top", scrub: true
-        }
-      });
-    }
+    gsap.to(".wwd__video", {
+      y: desktopMotion ? -36 : -18, ease: "none",
+      scrollTrigger: {
+        trigger: ".wwd__block", start: "top bottom", end: "bottom top", scrub: true
+      }
+    });
     gsap.from(".wwd__block--reverse .wwd__media", {
       autoAlpha: 0, y: 50, duration: 0.9, ease: "power3.out",
       scrollTrigger: { trigger: ".wwd__block--reverse", start: "top 78%" }
@@ -415,6 +425,16 @@
         delay: (i % 2) * 0.12,
         scrollTrigger: { trigger: cell, start: "top 80%" }
       });
+      if (!desktopMotion) {
+        /* mobile: the whole photo cell unclips as it enters */
+        gsap.fromTo(cell,
+          { clipPath: "inset(8% 6% 8% 6%)", autoAlpha: 0.35 },
+          {
+            clipPath: "inset(0% 0% 0% 0%)", autoAlpha: 1,
+            duration: 0.9, ease: "power3.out",
+            scrollTrigger: { trigger: cell, start: "top 84%" }
+          });
+      }
     });
 
     /* --- 5. Our Values: the manifesto darkens word by word with scroll --- */
