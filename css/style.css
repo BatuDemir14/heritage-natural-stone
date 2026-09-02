@@ -155,8 +155,8 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .hero__slogan {
   color: var(--alabaster);
   font-weight: 300;
-  font-size: clamp(1.05rem, 2vw, 1.5rem);
-  letter-spacing: 0.14em;
+  font-size: clamp(1.1rem, 2.1vw, 1.6rem);
+  letter-spacing: 0.07em;
   will-change: opacity, transform;
 }
 
@@ -422,7 +422,7 @@ body.past-hero .contact-rail {
   position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 12px;
   background: var(--alabaster-dim);
 }
 
@@ -592,7 +592,7 @@ body.past-hero .contact-rail {
   z-index: 2;
   width: min(420px, 92%);
   padding: clamp(1.6rem, 3vw, 2.6rem);
-  border-radius: 14px;
+  border-radius: 12px;
   text-align: center;
   color: var(--alabaster);
   background: rgba(248, 243, 234, 0.1);
@@ -713,6 +713,13 @@ body.past-hero .contact-rail {
 }
 .btn--ghost:hover { background: rgba(248, 243, 234, 0.1); }
 
+.close__note {
+  margin-top: 1.6rem;
+  font-size: 0.92rem;
+  color: rgba(248, 243, 234, 0.66);
+  max-width: 34ch;
+}
+
 .close__ask {
   font-weight: 600;
   font-size: clamp(1.2rem, 1.8vw, 1.6rem);
@@ -796,6 +803,18 @@ body.past-hero .contact-rail {
 }
 
 .footer__mark { width: 20px; height: auto; filter: brightness(0) invert(1) opacity(0.9); }
+
+.footer__nav { display: flex; flex-wrap: wrap; gap: 1.4rem; }
+
+.footer__nav a,
+.footer__mailto {
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  transition: color 0.25s var(--ease);
+}
+
+.footer__nav a:hover,
+.footer__mailto:hover { color: var(--gold); }
 
 .footer__legal { font-size: 0.8rem; }
 
