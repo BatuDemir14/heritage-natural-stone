@@ -14,6 +14,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script>
+    /* gate the motion layer before first paint (removed again if GSAP fails) */
+    (function () {
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!reduce && location.search.indexOf("noanim") === -1) {
+        document.documentElement.classList.add("gsap-motion");
+      }
+    })();
+  </script>
 </head>
 <body>
 
@@ -118,7 +127,7 @@
     <!-- ===== 3. Our Team (no heading by design) ===== -->
     <section class="section team" id="our-team" data-header-theme="light" aria-label="Our team">
       <div class="team__grid">
-        <div class="member reveal">
+        <div class="member">
           <figure class="member__media" data-photos>
             <img class="member__img member__img--main" src="assets/team/kerem-1.jpg" alt="Kerem Gemalmazoğlu" loading="lazy">
             <img class="member__img member__img--alt" src="assets/team/kerem-2.jpg" alt="Kerem Gemalmazoğlu playing water polo for the Turkish national team" loading="lazy">
@@ -134,7 +143,7 @@
           </p>
         </div>
 
-        <div class="member reveal">
+        <div class="member">
           <figure class="member__media" data-photos>
             <img class="member__img member__img--main" src="assets/team/emre-1.jpg" alt="Emre Gürdenli" loading="lazy">
             <img class="member__img member__img--alt" src="assets/team/emre-2.jpg" alt="Emre Gürdenli with a national team swimming medal" loading="lazy">
@@ -151,7 +160,7 @@
           </p>
         </div>
 
-        <div class="member reveal">
+        <div class="member">
           <figure class="member__media" data-photos>
             <img class="member__img member__img--main" src="assets/team/umut-1.jpg" alt="Umut Yeşiltan" loading="lazy">
             <img class="member__img member__img--alt" src="assets/team/umut-2.jpg" alt="Umut Yeşiltan inspecting a marble slab in the warehouse" loading="lazy">
@@ -166,7 +175,7 @@
           </p>
         </div>
       </div>
-      <p class="team__line reveal">
+      <p class="team__line">
         Two life-long best friends committed to sports, brought together by their
         drive to change an industry.
       </p>
@@ -176,10 +185,10 @@
     <section class="section wwd" id="what-we-do" data-header-theme="dark">
       <div class="wwd__block">
         <div class="wwd__content">
-          <p class="kicker kicker--gold reveal">What We Do</p>
-          <h2 class="section__title reveal">Traditional stone expertise,<br>modern sourcing intelligence.</h2>
+          <p class="kicker kicker--gold">What We Do</p>
+          <h2 class="section__title">Traditional stone expertise,<br>modern sourcing intelligence.</h2>
         </div>
-        <div class="wwd__video reveal">
+        <div class="wwd__video">
           <video id="introReel" src="assets/video/heritage-intro-reel.mp4"
                  autoplay muted loop playsinline preload="metadata"
                  aria-label="Heritage Natural Stone intro reel"></video>
@@ -187,10 +196,10 @@
       </div>
 
       <div class="wwd__block wwd__block--reverse">
-        <div class="wwd__media reveal" role="img" aria-label="Choosing stone samples over architectural drawings"
+        <div class="wwd__media" role="img" aria-label="Choosing stone samples over architectural drawings"
              style="background-image:url('assets/photos/stone-selection.jpg')"></div>
         <div class="wwd__content">
-          <p class="section__text reveal">
+          <p class="section__text">
             Looking for something specific? We find you exactly the stone you need -
             the right measurements, the right finish, the right quality, and quickly.
             In a market saturated with mislabeled stones and vague product
@@ -206,7 +215,8 @@
     <!-- ===== 5. Feature grid (hover reveals the stone behind) ===== -->
     <section class="features" id="features" data-header-theme="dark" aria-label="What we offer">
       <div class="features__grid">
-        <article class="fcell" id="quarry-access" tabindex="0" style="background-image:url('assets/photos/feature-quarry.jpg')">
+        <article class="fcell" id="quarry-access" tabindex="0">
+          <div class="fcell__bg" style="background-image:url(\'assets/photos/feature-quarry.jpg\')" aria-hidden="true"></div>
           <div class="fcell__card">
             <h3 class="fcell__title">Direct Quarry Access</h3>
             <p class="fcell__text">
@@ -216,7 +226,8 @@
             </p>
           </div>
         </article>
-        <article class="fcell" id="real-time-stock" tabindex="0" style="background-image:url('assets/photos/feature-stock.jpg')">
+        <article class="fcell" id="real-time-stock" tabindex="0">
+          <div class="fcell__bg" style="background-image:url(\'assets/photos/feature-stock.jpg\')" aria-hidden="true"></div>
           <div class="fcell__card">
             <h3 class="fcell__title">Real-Time Stock</h3>
             <p class="fcell__text">
@@ -225,7 +236,8 @@
             </p>
           </div>
         </article>
-        <article class="fcell" id="ai-sourcing" tabindex="0" style="background-image:url('assets/photos/feature-ai.jpg')">
+        <article class="fcell" id="ai-sourcing" tabindex="0">
+          <div class="fcell__bg" style="background-image:url(\'assets/photos/feature-ai.jpg\')" aria-hidden="true"></div>
           <div class="fcell__card">
             <h3 class="fcell__title">AI-Assisted Sourcing</h3>
             <p class="fcell__text">
@@ -234,7 +246,8 @@
             </p>
           </div>
         </article>
-        <article class="fcell" id="photos-in-hours" tabindex="0" style="background-image:url('assets/photos/feature-photos.jpg')">
+        <article class="fcell" id="photos-in-hours" tabindex="0">
+          <div class="fcell__bg" style="background-image:url(\'assets/photos/feature-photos.jpg\')" aria-hidden="true"></div>
           <div class="fcell__card">
             <h3 class="fcell__title">Photos in Hours</h3>
             <p class="fcell__text">
@@ -249,7 +262,7 @@
     <!-- ===== 6. Our Values ===== -->
     <section class="section values" id="our-values" data-header-theme="light">
       <p class="kicker reveal">Our Values</p>
-      <p class="values__text reveal">
+      <p class="values__text">
         We believe that what is built to last should never be just adequate.
         Natural stone was shaped long before us, and once given its place, can
         remain long after us. That kind of permanence deserves care and judgement.
@@ -265,8 +278,8 @@
     <section class="section close" id="contact" data-header-theme="dark">
       <div class="close__grid">
         <div class="close__left">
-          <h2 class="close__title reveal">Tell us what you need.<br>We&rsquo;ll take it from there.</h2>
-          <div class="close__actions reveal">
+          <h2 class="close__title">Tell us what you need.<br>We&rsquo;ll take it from there.</h2>
+          <div class="close__actions">
             <a class="btn btn--wa" href="https://wa.me/905350636763" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.39a9.87 9.87 0 0 0 4.74 1.21h.01c5.45 0 9.9-4.44 9.9-9.9a9.83 9.83 0 0 0-2.9-7A9.83 9.83 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.73-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29Z"/></svg>
               WhatsApp
@@ -275,7 +288,7 @@
           </div>
         </div>
 
-        <div class="close__right reveal">
+        <div class="close__right">
           <p class="close__ask">What can we help you find?</p>
           <ul class="presets">
             <li class="presets__row">
@@ -324,6 +337,8 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>

@@ -554,18 +554,31 @@ body.past-hero .contact-rail {
   align-items: center;
   justify-content: center;
   padding: clamp(1.5rem, 4vw, 3.5rem);
-  /* background-image set inline per cell (doc-relative URLs) */
-  background-size: cover;
-  background-position: center;
   overflow: hidden;
   outline: none;
 }
+
+/* photo lives on a child so it can Ken-Burns zoom on hover */
+.fcell__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.001);
+  transition: transform 1.4s var(--ease);
+  will-change: transform;
+}
+
+.fcell:hover .fcell__bg,
+.fcell:focus .fcell__bg,
+.fcell:focus-within .fcell__bg { transform: scale(1.06); }
 
 /* readable veil over the photo until the card opens */
 .fcell::before {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: rgba(26, 23, 20, 0.6);
   transition: background 0.5s var(--ease);
 }
@@ -576,6 +589,7 @@ body.past-hero .contact-rail {
 
 .fcell__card {
   position: relative;
+  z-index: 2;
   width: min(420px, 92%);
   padding: clamp(1.6rem, 3vw, 2.6rem);
   border-radius: 14px;
@@ -784,6 +798,43 @@ body.past-hero .contact-rail {
 .footer__mark { width: 20px; height: auto; filter: brightness(0) invert(1) opacity(0.9); }
 
 .footer__legal { font-size: 0.8rem; }
+
+/* ============================================================
+   Motion layer (html.gsap-motion — set pre-paint, removed if GSAP
+   fails to load so nothing can stay hidden)
+   ============================================================ */
+
+/* hero entrance targets start hidden; GSAP animates them in */
+.gsap-motion .hero__mark,
+.gsap-motion .hero__word,
+.gsap-motion .hero__slogan { visibility: hidden; }
+.gsap-motion .bar { transform: translateY(100%); }
+
+/* Our Values word-scrub: JS wraps each word in .w */
+.values__text .w { display: inline; }
+
+/* member photo: subtle zoom on hover */
+.member__media { overflow: hidden; }
+.member__img { transition: opacity 0.5s var(--ease), transform 1.2s var(--ease); }
+@media (hover: hover) {
+  .member__media:hover .member__img { transform: scale(1.04); }
+}
+
+/* team stage: while pinned by ScrollTrigger the section is a full
+   viewport frame (desktop only) */
+@media (min-width: 901px) {
+  .gsap-motion .team {
+    min-height: calc(100svh - var(--bar-h));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: clamp(2rem, 5vh, 4rem);
+    padding-bottom: clamp(2rem, 5vh, 4rem);
+  }
+  .gsap-motion .team .member__media { max-height: 40vh; }
+  .gsap-motion .team .member__text { font-size: 0.92rem; }
+  .gsap-motion .team .member__name { margin-top: 0.9rem; }
+}
 
 /* ============================================================
    Responsive

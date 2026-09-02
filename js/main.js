@@ -299,6 +299,170 @@
     sections.forEach(function (s) { sectionObserver.observe(s); });
   }
 
+  /* ============================================================
+     GSAP motion layer (scrolltelling choreography)
+     html.gsap-motion is set pre-paint; removed here if GSAP failed
+     to load so no content can stay hidden.
+     ============================================================ */
+  var motionOn = document.documentElement.classList.contains("gsap-motion");
+  if (motionOn && !(window.gsap && window.ScrollTrigger)) {
+    document.documentElement.classList.remove("gsap-motion");
+    motionOn = false;
+  }
+
+  if (motionOn) {
+    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.config({ ignoreMobileResize: true });
+    var desktopMotion =
+      window.matchMedia("(min-width: 901px)").matches ||
+      location.search.indexOf("forcedesktop") !== -1; /* QA hook */
+
+    /* --- 1. Hero entrance: brand, slogan, then the bar rises --- */
+    if (window.scrollY < 40) {
+      gsap.timeline({ defaults: { ease: "power3.out" } })
+        .fromTo(".hero__mark", { autoAlpha: 0, y: 26 },
+                { autoAlpha: 1, y: 0, duration: 0.9 }, 0.15)
+        .fromTo(".hero__word", { autoAlpha: 0, y: 26 },
+                { autoAlpha: 1, y: 0, duration: 0.9 }, 0.3)
+        .fromTo(".hero__slogan", { autoAlpha: 0, y: 18 },
+                { autoAlpha: 1, y: 0, duration: 0.8 }, 0.65)
+        .to(".bar", { y: 0, duration: 0.8, ease: "power2.out" }, 0.5);
+    } else {
+      gsap.set([".hero__mark", ".hero__word", ".hero__slogan"], { autoAlpha: 1 });
+      gsap.set(".bar", { y: 0 });
+    }
+
+    /* --- 2. Our Team: pinned frame, members arrive one by one,
+           then all three float away upward (client-specified) --- */
+    if (desktopMotion) {
+      gsap.timeline({
+        defaults: { ease: "power2.out" },
+        scrollTrigger: {
+          trigger: "#our-team",
+          start: function () { return "top " + bar.offsetHeight; },
+          end: "+=240%",
+          pin: true,
+          scrub: 0.6,
+          anticipatePin: 1
+        }
+      })
+        .from(".team__grid .member:nth-child(1)", { autoAlpha: 0, y: 90, duration: 1 })
+        .from(".team__grid .member:nth-child(2)", { autoAlpha: 0, y: 90, duration: 1 }, "+=0.25")
+        .from(".team__grid .member:nth-child(3)", { autoAlpha: 0, y: 90, duration: 1 }, "+=0.25")
+        .from(".team__line", { autoAlpha: 0, y: 30, duration: 0.7 }, "+=0.2")
+        .to({}, { duration: 1 }) /* readable hold */
+        .to(["#our-team .team__grid", "#our-team .team__line"],
+            { autoAlpha: 0, y: -110, duration: 1.1, ease: "power2.in" });
+    } else {
+      gsap.utils.toArray(".team__grid .member").forEach(function (m) {
+        gsap.from(m, {
+          autoAlpha: 0, y: 46, duration: 0.7, ease: "power2.out",
+          scrollTrigger: { trigger: m, start: "top 85%" }
+        });
+      });
+      gsap.from(".team__line", {
+        autoAlpha: 0, y: 24, duration: 0.6,
+        scrollTrigger: { trigger: ".team__line", start: "top 92%" }
+      });
+    }
+
+    /* --- 3. What We Do: title rises, video curtain-reveals + drifts --- */
+    gsap.from("#what-we-do .kicker", {
+      autoAlpha: 0, y: 24, duration: 0.6, ease: "power2.out",
+      scrollTrigger: { trigger: "#what-we-do", start: "top 72%" }
+    });
+    gsap.from("#what-we-do .section__title", {
+      autoAlpha: 0, y: 44, duration: 0.9, ease: "power3.out",
+      scrollTrigger: { trigger: "#what-we-do", start: "top 72%" }
+    });
+    gsap.fromTo(".wwd__video",
+      { clipPath: "inset(100% 0% 0% 0%)" },
+      {
+        clipPath: "inset(0% 0% 0% 0%)", duration: 1.1, ease: "power3.inOut",
+        scrollTrigger: { trigger: ".wwd__video", start: "top 82%" }
+      });
+    if (desktopMotion) {
+      gsap.to(".wwd__video", {
+        y: -36, ease: "none",
+        scrollTrigger: {
+          trigger: ".wwd__block", start: "top bottom", end: "bottom top", scrub: true
+        }
+      });
+    }
+    gsap.from(".wwd__block--reverse .wwd__media", {
+      autoAlpha: 0, y: 50, duration: 0.9, ease: "power3.out",
+      scrollTrigger: { trigger: ".wwd__block--reverse", start: "top 78%" }
+    });
+    gsap.from(".wwd__block--reverse .section__text", {
+      autoAlpha: 0, y: 34, duration: 0.9, ease: "power3.out", delay: 0.12,
+      scrollTrigger: { trigger: ".wwd__block--reverse", start: "top 78%" }
+    });
+
+    /* --- 4. Feature grid: cards rise cell by cell --- */
+    gsap.utils.toArray(".fcell").forEach(function (cell, i) {
+      gsap.from(cell.querySelector(".fcell__card"), {
+        autoAlpha: 0, y: 44, duration: 0.8, ease: "power2.out",
+        delay: (i % 2) * 0.12,
+        scrollTrigger: { trigger: cell, start: "top 80%" }
+      });
+    });
+
+    /* --- 5. Our Values: the manifesto darkens word by word with scroll --- */
+    var valuesText = document.querySelector(".values__text");
+    if (valuesText) {
+      valuesText.innerHTML = valuesText.textContent.trim().split(/\s+/)
+        .map(function (w) { return '<span class="w">' + w + "</span>"; })
+        .join(" ");
+      gsap.fromTo(".values__text .w",
+        { opacity: 0.13 },
+        {
+          opacity: 1, stagger: 0.035, ease: "none",
+          scrollTrigger: {
+            trigger: ".values", start: "top 72%", end: "center 42%", scrub: true
+          }
+        });
+    }
+
+    /* --- 6. Contact: statement, buttons, then the preset rows cascade --- */
+    gsap.from(".close__title", {
+      autoAlpha: 0, y: 44, duration: 0.85, ease: "power3.out",
+      scrollTrigger: { trigger: "#contact", start: "top 72%" }
+    });
+    gsap.from(".close__actions", {
+      autoAlpha: 0, y: 26, duration: 0.7, delay: 0.15, ease: "power2.out",
+      scrollTrigger: { trigger: "#contact", start: "top 72%" }
+    });
+    gsap.from(".close__right .close__ask", {
+      autoAlpha: 0, y: 26, duration: 0.7, ease: "power2.out",
+      scrollTrigger: { trigger: ".close__right", start: "top 78%" }
+    });
+    gsap.from(".presets__row", {
+      autoAlpha: 0, y: 22, duration: 0.55, stagger: 0.07, ease: "power2.out",
+      scrollTrigger: { trigger: ".presets", start: "top 82%" }
+    });
+
+    /* --- 7. Stats count up when they enter (25 / 2,000+ / <24h) --- */
+    document.querySelectorAll(".stats__num").forEach(function (el) {
+      var raw = el.textContent;
+      var num = parseInt(raw.replace(/[^0-9]/g, ""), 10);
+      if (!num) return;
+      var prefix = raw.indexOf("<") !== -1 ? "<" : "";
+      var suffix = raw.indexOf("+") !== -1 ? "+" : raw.indexOf("h") !== -1 ? "h" : "";
+      var state = { n: 0 };
+      gsap.to(state, {
+        n: num, duration: 1.6, ease: "power2.out",
+        scrollTrigger: { trigger: el, start: "top 88%" },
+        onUpdate: function () {
+          el.textContent =
+            prefix + Math.round(state.n).toLocaleString("en-US") + suffix;
+        }
+      });
+    });
+
+    /* layout settles after fonts/images: recalc trigger positions */
+    window.addEventListener("load", function () { ScrollTrigger.refresh(); });
+  }
+
   /* --- Footer year --- */
   var year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
