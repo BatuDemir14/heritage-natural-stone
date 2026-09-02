@@ -71,6 +71,7 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   line-height: 1.08;
   letter-spacing: -0.01em;
   color: inherit;
+  text-wrap: balance;
 }
 
 .section__text {
@@ -157,6 +158,7 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   font-weight: 300;
   font-size: clamp(1.1rem, 2.1vw, 1.6rem);
   letter-spacing: 0.07em;
+  text-shadow: 0 1px 28px rgba(26, 23, 20, 0.55), 0 0 2px rgba(26, 23, 20, 0.35);
   will-change: opacity, transform;
 }
 
@@ -319,6 +321,13 @@ body.past-hero .contact-rail {
   pointer-events: auto;
 }
 
+/* contact section has its own CTAs; the rail steps aside there */
+body.in-contact .contact-rail {
+  opacity: 0;
+  transform: translateY(14px);
+  pointer-events: none;
+}
+
 .contact-rail__btn {
   display: flex;
   align-items: center;
@@ -329,6 +338,7 @@ body.past-hero .contact-rail {
   border-radius: 10px;
   background: var(--alabaster);
   color: var(--charcoal);
+  border: 1px solid rgba(42, 40, 37, 0.08);
   box-shadow: 0 8px 26px rgba(23, 20, 17, 0.28);
   overflow: hidden;
   white-space: nowrap;
@@ -376,11 +386,12 @@ body.past-hero .contact-rail {
 
 .who__body { padding-top: 0.6rem; }
 
+/* stats share the team grid's exact template so the two 3-col rows align */
 .stats {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2rem;
+  gap: clamp(1.8rem, 4vw, 3.5rem);
   margin-top: clamp(1rem, 4vh, 2.5rem);
 }
 
@@ -473,12 +484,13 @@ body.past-hero .contact-rail {
 }
 
 .member__role {
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--gold);
   margin: 0.45rem 0 0.9rem;
+  white-space: nowrap;
 }
 
 .member__text { font-size: 0.98rem; }
@@ -652,9 +664,9 @@ body.past-hero .contact-rail {
 .values__text {
   font-family: "Cinzel", serif;
   font-weight: 500;
-  font-size: clamp(1.15rem, 0.9rem + 1.3vw, 2.1rem);
-  line-height: 1.7;
-  max-width: 44ch;
+  font-size: clamp(1.1rem, 0.9rem + 1vw, 1.8rem);
+  line-height: 1.8;
+  max-width: 42ch;
   color: var(--charcoal);
 }
 
@@ -704,8 +716,13 @@ body.past-hero .contact-rail {
 
 .btn:hover { transform: translateY(-2px); }
 
-.btn--wa { background: #25d366; color: #fff; }
-.btn--wa svg { width: 20px; height: 20px; }
+/* WhatsApp keeps its brand green only on the glyph; the surface stays ours */
+.btn--wa {
+  border: 1px solid rgba(248, 243, 234, 0.28);
+  color: var(--alabaster);
+}
+.btn--wa svg { width: 20px; height: 20px; color: #25d366; }
+.btn--wa:hover { border-color: var(--gold); }
 
 .btn--ghost {
   border: 1px solid rgba(248, 243, 234, 0.4);
@@ -769,6 +786,13 @@ body.past-hero .contact-rail {
 }
 
 .presets__mail:hover { background: var(--alabaster); color: var(--charcoal); }
+
+/* the arrow is the row's language; the mail chip appears on row hover */
+@media (hover: hover) {
+  .presets__mail { opacity: 0; transition: opacity 0.25s var(--ease), background 0.25s var(--ease), color 0.25s var(--ease); }
+  .presets__row:hover .presets__mail,
+  .presets__mail:focus-visible { opacity: 1; }
+}
 
 /* ============================================================
    Footer

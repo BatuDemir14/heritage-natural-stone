@@ -126,6 +126,16 @@
     );
   }
 
+  /* hide the rail while the contact section (with its own CTAs) is on screen */
+  var contactSection = document.getElementById("contact");
+  if (contactSection && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        document.body.classList.toggle("in-contact", entry.isIntersecting);
+      });
+    }, { threshold: 0.2 }).observe(contactSection);
+  }
+
   function onScroll() {
     updateBarTheme();
     updateLogo();
@@ -326,7 +336,7 @@
                 { autoAlpha: 1, y: 0, duration: 0.9 }, 0.3)
         .fromTo(".hero__slogan", { autoAlpha: 0, y: 18 },
                 { autoAlpha: 1, y: 0, duration: 0.8 }, 0.65)
-        .to(".bar", { y: 0, duration: 0.8, ease: "power2.out" }, 0.5);
+        .to(".bar", { y: 0, duration: 0.8, ease: "power3.out" }, 0.5);
     } else {
       gsap.set([".hero__mark", ".hero__word", ".hero__slogan"], { autoAlpha: 1 });
       gsap.set(".bar", { y: 0 });
@@ -336,27 +346,27 @@
            then all three float away upward (client-specified) --- */
     if (desktopMotion) {
       gsap.timeline({
-        defaults: { ease: "power2.out" },
+        defaults: { ease: "power3.out" },
         scrollTrigger: {
           trigger: "#our-team",
           start: function () { return "top " + bar.offsetHeight; },
-          end: "+=240%",
+          end: "+=160%",
           pin: true,
           scrub: 0.6,
           anticipatePin: 1
         }
       })
-        .from(".team__grid .member:nth-child(1)", { autoAlpha: 0, y: 90, duration: 1 })
-        .from(".team__grid .member:nth-child(2)", { autoAlpha: 0, y: 90, duration: 1 }, "+=0.25")
-        .from(".team__grid .member:nth-child(3)", { autoAlpha: 0, y: 90, duration: 1 }, "+=0.25")
-        .from(".team__line", { autoAlpha: 0, y: 30, duration: 0.7 }, "+=0.2")
-        .to({}, { duration: 1 }) /* readable hold */
+        .from(".team__grid .member:nth-child(1)", { autoAlpha: 0, y: 80, duration: 1 })
+        .from(".team__grid .member:nth-child(2)", { autoAlpha: 0, y: 80, duration: 1 }, "-=0.55")
+        .from(".team__grid .member:nth-child(3)", { autoAlpha: 0, y: 80, duration: 1 }, "-=0.55")
+        .from(".team__line", { autoAlpha: 0, y: 26, duration: 0.7 }, "-=0.3")
+        .to({}, { duration: 0.5 }) /* readable hold */
         .to(["#our-team .team__grid", "#our-team .team__line"],
-            { autoAlpha: 0, y: -110, duration: 1.1, ease: "power2.in" });
+            { autoAlpha: 0, y: -60, duration: 0.9, ease: "power3.in" });
     } else {
       gsap.utils.toArray(".team__grid .member").forEach(function (m) {
         gsap.from(m, {
-          autoAlpha: 0, y: 46, duration: 0.7, ease: "power2.out",
+          autoAlpha: 0, y: 46, duration: 0.7, ease: "power3.out",
           scrollTrigger: { trigger: m, start: "top 85%" }
         });
       });
@@ -368,7 +378,7 @@
 
     /* --- 3. What We Do: title rises, video curtain-reveals + drifts --- */
     gsap.from("#what-we-do .kicker", {
-      autoAlpha: 0, y: 24, duration: 0.6, ease: "power2.out",
+      autoAlpha: 0, y: 24, duration: 0.6, ease: "power3.out",
       scrollTrigger: { trigger: "#what-we-do", start: "top 72%" }
     });
     gsap.from("#what-we-do .section__title", {
@@ -401,7 +411,7 @@
     /* --- 4. Feature grid: cards rise cell by cell --- */
     gsap.utils.toArray(".fcell").forEach(function (cell, i) {
       gsap.from(cell.querySelector(".fcell__card"), {
-        autoAlpha: 0, y: 44, duration: 0.8, ease: "power2.out",
+        autoAlpha: 0, y: 44, duration: 0.8, ease: "power3.out",
         delay: (i % 2) * 0.12,
         scrollTrigger: { trigger: cell, start: "top 80%" }
       });
@@ -414,7 +424,7 @@
         .map(function (w) { return '<span class="w">' + w + "</span>"; })
         .join(" ");
       gsap.fromTo(".values__text .w",
-        { opacity: 0.13 },
+        { opacity: 0.28 },
         {
           opacity: 1, stagger: 0.035, ease: "none",
           scrollTrigger: {
@@ -429,15 +439,15 @@
       scrollTrigger: { trigger: "#contact", start: "top 72%" }
     });
     gsap.from(".close__actions", {
-      autoAlpha: 0, y: 26, duration: 0.7, delay: 0.15, ease: "power2.out",
+      autoAlpha: 0, y: 26, duration: 0.7, delay: 0.15, ease: "power3.out",
       scrollTrigger: { trigger: "#contact", start: "top 72%" }
     });
     gsap.from(".close__right .close__ask", {
-      autoAlpha: 0, y: 26, duration: 0.7, ease: "power2.out",
+      autoAlpha: 0, y: 26, duration: 0.7, ease: "power3.out",
       scrollTrigger: { trigger: ".close__right", start: "top 78%" }
     });
     gsap.from(".presets__row", {
-      autoAlpha: 0, y: 22, duration: 0.55, stagger: 0.07, ease: "power2.out",
+      autoAlpha: 0, y: 22, duration: 0.55, stagger: 0.07, ease: "power3.out",
       scrollTrigger: { trigger: ".presets", start: "top 82%" }
     });
 
@@ -450,7 +460,7 @@
       var suffix = raw.indexOf("+") !== -1 ? "+" : raw.indexOf("h") !== -1 ? "h" : "";
       var state = { n: 0 };
       gsap.to(state, {
-        n: num, duration: 1.6, ease: "power2.out",
+        n: num, duration: 1.6, ease: "power3.out",
         scrollTrigger: { trigger: el, start: "top 88%" },
         onUpdate: function () {
           el.textContent =
